@@ -24,5 +24,15 @@ contract BlindAuction{
     error TooLate(uint time);
     error AuctionEndAlreadyCalled();
 
-    
+    constructor(
+        uint TimeofBid,
+        uint TimeofReveal,
+        address payable AddressofBeneficiary
+    ){
+        beneficiary = AddressofBeneficiary;
+        biddingEnd = block.timestamp + TimeofBid;
+        revealEnd = biddingEnd+ TimeofReveal;
+    }
+
+
 }
