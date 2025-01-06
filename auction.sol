@@ -24,6 +24,17 @@ contract BlindAuction{
     error TooLate(uint time);
     error AuctionEndAlreadyCalled();
 
+
+    modifier onlyBefore(uint time){
+        if(block.timestamp >=time) revert Toolate(time);
+        _;
+    }
+
+    modifier onlyAfter(uint time){
+        if(block.timestamp<= time) revert TooEarly(time);
+        _;
+    }
+
     constructor(
         uint TimeofBid,
         uint TimeofReveal,
@@ -33,6 +44,18 @@ contract BlindAuction{
         biddingEnd = block.timestamp + TimeofBid;
         revealEnd = biddingEnd+ TimeofReveal;
     }
+
+
+    function bid(bytes32 blindedBid) external payable onlyBefore(biddingEnd){
+
+        blindedBid = keccak256((abi.encodePacked((value,fake, "hello"));))
+        bids[msg.sender].push(Bid({
+            blindedBid: blindedBid,
+            deposit: msg.value
+        }))
+    }
+
+
 
 
 }
