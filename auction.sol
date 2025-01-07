@@ -91,6 +91,14 @@ contract BlindAuction{
         }
     }
 
+    function auctionEnd() external onlyAfter(revealEnd){
+        if(ended) revert AuctionEndAlreadyCalled();
+        emit AuctionEnded(highestBidder, highestBid);
+        ended = true;
+        beneficiary.transfer(highestBid);
+    }
+    
+
 
 
 
