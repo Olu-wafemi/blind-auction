@@ -48,12 +48,30 @@ contract BlindAuction{
 
     function bid(bytes32 blindedBid) external payable onlyBefore(biddingEnd){
 
-        blindedBid = keccak256((abi.encodePacked((value,fake, "hello"));))
+        blindedBid = keccak256((abi.encodePacked((value,fake, secrets));))
         bids[msg.sender].push(Bid({
             blindedBid: blindedBid,
             deposit: msg.value
         }))
     }
+
+    function reveal(
+        uint[] calldata values
+        bool[] calldata fakes,
+        bytes32[] calldat secrets
+    ) external onlyAfter(biddongEnd) onlyBefoe(revealEnd){
+        uint length = bids[msg.sender].length;
+        require(values.length == length);
+        require(fakes.length == length);
+        require(secrets.length == length);
+
+        uint refund;
+        for (uint i =0; i< length; i++){
+            
+        }
+    }
+
+
 
 
 
