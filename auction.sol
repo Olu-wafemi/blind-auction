@@ -46,14 +46,18 @@ contract BlindAuction{
     }
 
 
-    function bid(bytes32 blindedBid) external payable onlyBefore(biddingEnd){
-
-        blindedBid = keccak256((abi.encodePacked((value,fake, secrets));))
+     function bid( bool fake, bytes32 secret)
+        external
+        payable
+        onlyBefore(biddingEnd)
+    {
+        blindedBid = keccak256((abi.encodePacked(msg.value,fake, secret)));
         bids[msg.sender].push(Bid({
             blindedBid: blindedBid,
             deposit: msg.value
-        }))
+        }));
     }
+
 
     function reveal(
         uint[] calldata values
