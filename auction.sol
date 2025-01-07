@@ -97,7 +97,19 @@ contract BlindAuction{
         ended = true;
         beneficiary.transfer(highestBid);
     }
-    
+    function placeBid(address bidder, uint value) internal returns (bool success){
+        if (value <= highestBid){
+            return false;
+        }
+        if(highestBidder != address(0)){
+            pendingReturns[highestBidde] += highestBid;
+         }
+         highestBid = value;
+         highestBidder = bidder;
+         return true;
+
+    }
+
 
 
 
