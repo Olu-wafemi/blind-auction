@@ -77,14 +77,15 @@ contract BlindAuction{
             if(bidTocheck.blindedBid!= keccak256(abi.encodePacked(value,fake,secret))){
                 continue;
             }
-            refund += bidToCheck.deposit;
-            if(!fake && bidToCheck.deposit >= value){
-                if(placeBid(msg.sender, value))
-                refund -= value;
-            }
             bidToCheck.blindedBid = bytes32(0);
-        }
-        payable(msg.sender).transfer(refund);
+if (!fake && bidToCheck.deposit >= value) {
+    if (!placeBid(msg.sender, value)) {
+        
+        payable(msg.sender).transfer(bidToCheck.deposit);
+    }
+} else {
+    payable(msg.sender).transfer(bidToCheck.deposit);
+}
     }
 
     function withdraw() external {
