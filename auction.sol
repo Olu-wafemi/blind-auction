@@ -87,6 +87,7 @@ if (!fake && bidToCheck.deposit >= value) {
     payable(msg.sender).transfer(bidToCheck.deposit);
 }
     }
+    }
 
     function withdraw() external {
         uint amount = pendingReturns(msg.sender);
