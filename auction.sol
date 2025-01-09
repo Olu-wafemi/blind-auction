@@ -60,9 +60,9 @@ contract BlindAuction{
 
 
     function reveal(
-        uint[] calldata values
+        uint[] calldata values,
         bool[] calldata fakes,
-        bytes32[] calldat secrets
+        bytes32[] calldata secrets
     ) external onlyAfter(biddongEnd) onlyBefoe(revealEnd){
         uint length = bids[msg.sender].length;
         require(values.length == length);
