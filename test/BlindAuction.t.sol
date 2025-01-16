@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.18;
 
-import {Test} from "../lib/forge-std/src/Test.sol";
+import {Test, console} from "../lib/forge-std/src/Test.sol";
 import {BlindAuction} from "../src/auction.sol";
 
 contract AuctionTest is Test {
@@ -15,4 +15,8 @@ contract AuctionTest is Test {
     function testbeneficiary() public view {
         assertEq(blindauction.beneficiary(), msg.sender);
     }
+
+    //     function testownerismsgsender(){
+    //         assertEq(blindauction.)
+    //     }
 }
