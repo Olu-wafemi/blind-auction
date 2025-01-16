@@ -9,6 +9,8 @@ out/
 
 # Docs
 docs/
-
+.github
+.lib
+.gitmodules
 # Dotenv file
 .env
