@@ -62,7 +62,6 @@ contract BlindAuction {
         require(fakes.length == length);
         require(secrets.length == length);
 
-        uint refund;
         for (uint i = 0; i < length; i++) {
             Bid storage bidToCheck = bids[msg.sender][i];
             (uint value, bool fake, bytes32 secret) = (
