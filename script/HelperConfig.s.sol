@@ -4,12 +4,18 @@ pragma solidity ^0.8.18;
 
 import {Script} from "../lib/forge-std/src/Script.sol";
 
-// /To delpoy mocks of the contract while on the local anvil network
+// /To delpoy mocks of the contract while on the local anvil network,
+//A contract was created to avoid hardcdoing things in the run script, in this case we're trying to get teh address of the spolia/anvil local netwrok
 contract HelperConfig {
     NetworkConfig public activeNetworkconfig;
 
     struct NetworkConfig {
         address priceFeed;
+    }
+
+    struct Bid {
+        bytes32 blindedBid;
+        uint deposit;
     }
 
     constructor() {

@@ -1,21 +1,17 @@
 //SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
+import {HelperConfig} from "../script/HelperConfig.s.sol";
 
-contract BlindAuction {
-    struct Bid {
-        bytes32 blindedBid;
-        uint deposit;
-    }
-
+contract BlindAuction is HelperConfig {
     address payable public beneficiary;
     uint public biddingEnd;
     uint public revealEnd;
     bool public ended;
 
-    mapping(address => Bid[]) public bids;
+    mapping(address => Bid[]) private bids;
 
-    address public highestBidder;
-    uint public highestBid;
+    address private highestBidder;
+    uint private highestBid;
 
     mapping(address => uint) pendingReturns;
 
@@ -114,5 +110,17 @@ contract BlindAuction {
         highestBid = value;
         highestBidder = bidder;
         return true;
+    }
+
+    //View fundtions
+
+    function getBids(
+        address biddingaddress
+    ) external view returns (Bid[] memory) {
+        return bids[biddingaddress];
+    }
+
+    function gethighestbidder() external view returns (address) {
+        return highestBidder;
     }
 }
