@@ -11,8 +11,8 @@ contract AuctionTest is Test {
     BlindAuction blindauction;
 
     function setUp() external {
-        DeployBlindAuction deployblindauction = new DeployBlindAuction();
-        blindauction = deployblindauction.run();
+        blindauction = new BlindAuction(20, 50, payable(address(this)));
+        //blindauction = deployblindauction.run();
     }
 
     function testbeneficiary() public view {

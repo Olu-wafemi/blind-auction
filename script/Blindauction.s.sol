@@ -8,12 +8,7 @@ import {BlindAuction} from "../src/auction.sol";
 contract DeployBlindAuction is Script {
     function run() external {
         vm.startBroadcast();
-        BlindAuction blindauction = new BlindAuction(
-            20,
-            50,
-            payable(address(this))
-        );
+        new BlindAuction(20, 50, payable(address(this)));
         vm.stopBroadcast();
-        return blindauction;
     }
 }
