@@ -35,4 +35,14 @@ contract AuctionTest is Test, HelperConfig {
         Bid[] memory bid = blindauction.getBids(address(this));
         assertEq(abid, bid[0].blindedBid);
     }
+
+    function testreveal() public {
+        blindauction.reveal(
+            [uint256(10 * 10 ** 18)],
+            [false],
+            [bytes32("there")]
+        );
+        address thehighestbidder = blindauction.gethighestbidder();
+        assertEq(thehighestbidder, msg.sender);
+    }
 }

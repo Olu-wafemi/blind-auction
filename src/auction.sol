@@ -49,9 +49,9 @@ contract BlindAuction is HelperConfig {
     }
 
     function reveal(
-        uint[] calldata values,
-        bool[] calldata fakes,
-        bytes32[] calldata secrets
+        uint[1] calldata values,
+        bool[1] calldata fakes,
+        bytes32[1] calldata secrets
     ) external onlyAfter(biddingEnd) onlyBefore(revealEnd) {
         uint length = bids[msg.sender].length;
         require(values.length == length);
