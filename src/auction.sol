@@ -13,7 +13,7 @@ contract BlindAuction is HelperConfig {
     address private highestBidder;
     uint private highestBid;
 
-    mapping(address => uint) pendingReturns;
+    mapping(address => uint) private pendingReturns;
 
     event AuctionEnded(address winner, uint highestBid);
 
@@ -122,5 +122,11 @@ contract BlindAuction is HelperConfig {
 
     function gethighestbidder() external view returns (address) {
         return highestBidder;
+    }
+
+    function getpendingreturns(
+        address addresstocheck
+    ) external view returns (uint) {
+        return pendingReturns[addresstocheck];
     }
 }

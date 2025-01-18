@@ -16,7 +16,7 @@ contract AuctionTest is Test, HelperConfig {
     bytes32 abid;
 
     function setUp() external {
-        blindauction = new BlindAuction(20, 50, payable(msg.sender));
+        blindauction = new BlindAuction(0, 0, payable(msg.sender));
         //blindauction = deployblindauction.run();
     }
 
@@ -44,5 +44,11 @@ contract AuctionTest is Test, HelperConfig {
         );
         address thehighestbidder = blindauction.gethighestbidder();
         assertEq(thehighestbidder, msg.sender);
+    }
+
+    function testwithdrawsuccessful() public {
+        blindauction.withdraw();
+        uint amount = blindauction.getpendingreturns(msg.sender);
+        assertNotEq(amount, 0);
     }
 }
