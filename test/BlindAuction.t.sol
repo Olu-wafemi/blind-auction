@@ -37,11 +37,17 @@ contract AuctionTest is Test, HelperConfig {
     }
 
     function testreveal() public {
+        uint256 gasStart = gasleft();
         blindauction.reveal(
             [uint256(10 * 10 ** 18)],
             [false],
             [bytes32("there")]
         );
+
+        uint256 gasEnd = gasleft();
+        uint256 gasused = (gasStart - gasEnd) * tx.gasprice;
+
+        console.log(gasused);
         address thehighestbidder = blindauction.gethighestbidder();
         assertEq(thehighestbidder, msg.sender);
     }
