@@ -2,14 +2,12 @@
 
 pragma solidity ^0.8.18;
 
-import {Test} from "../lib/forge-std/src/Test.sol";
-import {console} from "../lib/forge-std/src/console.sol";
+import {Test, console} from "forge-std/Test.sol";
 
-import "forge-std/Test.sol";
-import {BlindAuction} from "../src/auction.sol";
+import {BlindAuction} from "../../src/auction.sol";
 
-import {DeployBlindAuction} from "../script/Blindauction.s.sol";
-import {HelperConfig} from "../script/HelperConfig.s.sol";
+import {DeployBlindAuction} from "../../script/Blindauction.s.sol";
+import {HelperConfig} from ".../../script/HelperConfig.s.sol";
 
 contract AuctionTest is Test, HelperConfig {
     BlindAuction blindauction;
