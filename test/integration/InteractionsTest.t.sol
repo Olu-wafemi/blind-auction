@@ -10,9 +10,7 @@ import {DeployBlindAuction} from "../../script/Blindauction.s.sol";
 import {HelperConfig} from "../../script/HelperConfig.s.sol";
 import {Auction} from "../../script/Interactions.s.sol";
 
-
 contract BlindAuctionIntegarationTest is Test, HelperConfig {
-
     BlindAuction blindauction;
     bytes32 abid;
 
@@ -25,19 +23,17 @@ contract BlindAuctionIntegarationTest is Test, HelperConfig {
         DeployBlindAuction deployblindauction = new DeployBlindAuction();
         blindauction = deployblindauction.run();
         vm.deal(USER, STARTING_BALANCE);
-
     }
 
-    function testusercanbid() public{
-       Auction auction = new Auction();
+    function testusercanbid() public {
+        Auction auction = new Auction();
         auction.BidBlindAuction(address(blindauction));
-         abid = keccak256(
+        abid = keccak256(
             abi.encodePacked(uint256(10 * 10 ** 18), false, "there")
         );
 
         blindauction.bid(abid);
         Bid[] memory bid = blindauction.getBids(address(this));
         assertEq(abid, bid[0].blindedBid);
-
     }
 }
