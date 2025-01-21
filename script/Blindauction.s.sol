@@ -6,9 +6,10 @@ import {Script} from "../lib/forge-std/src/Script.sol";
 import {BlindAuction} from "../src/auction.sol";
 
 contract DeployBlindAuction is Script {
-    function run() external {
+    function run() public returns(BlindAuction)  {
         vm.startBroadcast();
-        new BlindAuction(20, 50, payable(address(this)));
+        BlindAuction blindauction = new BlindAuction(20, 50, payable(address(this)));
         vm.stopBroadcast();
+        return blindauction;
     }
 }

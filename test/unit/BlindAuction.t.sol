@@ -7,7 +7,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {BlindAuction} from "../../src/auction.sol";
 
 import {DeployBlindAuction} from "../../script/Blindauction.s.sol";
-import {HelperConfig} from ".../../script/HelperConfig.s.sol";
+import {HelperConfig} from "../../script/HelperConfig.s.sol";
 
 contract AuctionTest is Test, HelperConfig {
     BlindAuction blindauction;

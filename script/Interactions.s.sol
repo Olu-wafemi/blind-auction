@@ -11,7 +11,7 @@ contract Auction is Script {
     bytes32 abid =
         keccak256(abi.encodePacked(uint256(10 * 10 ** 10), false, "why"));
 
-    function bidBlindAuction(address mostRecentlyDeployed) public {
+    function BidBlindAuction(address mostRecentlyDeployed) public {
         vm.startBroadcast();
         BlindAuction(mostRecentlyDeployed).bid(abid);
         vm.stopBroadcast();
@@ -23,6 +23,6 @@ contract Auction is Script {
             block.chainid
         );
 
-        bidBlindAuction(mostRecentlyDeployed);
+        BidBlindAuction(mostRecentlyDeployed);
     }
 }
